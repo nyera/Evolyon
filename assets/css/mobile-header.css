@@ -1,0 +1,403 @@
+/*
+ * Mobile header — a dedicated composition, not the desktop header
+ * compressed by a media query (see Evolyon_Mobile_Header_Render's
+ * docblock). Shown/hidden opposite `.evln-header-desktop` by the inline
+ * breakpoint rule in evolyon_enqueue_assets(). All spacing/sizing here
+ * comes from the Mobile tab's settings via --evln-mh-* custom properties,
+ * plus the design-token scale for anything not user-configurable.
+ */
+
+.evln-header-mobile {
+	container-type: inline-size;
+	container-name: evln-mobile;
+	background: var(--evln-mh-bg, var(--evln-surface));
+	color: var(--evln-mh-text, var(--evln-text));
+	border-bottom: 1px solid var(--evln-border);
+}
+
+.evln-header-mobile--no-border {
+	border-bottom-color: transparent;
+}
+
+.evln-header-mobile:not(.evln-header-mobile--no-shadow) {
+	box-shadow: var(--evln-shadow-sm);
+}
+
+.evln-mobile-row {
+	display: flex;
+	align-items: center;
+	min-height: var(--evln-mh-height, 64px);
+	padding-inline: var(--evln-mh-padding, 16px);
+	gap: 8px;
+}
+
+.evln-mobile-row--primary:has(.evln-mobile-zone--center) {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	align-items: center;
+}
+
+.evln-mobile-row--secondary {
+	border-top: 1px solid var(--evln-border);
+	padding-block: 8px;
+}
+
+.evln-mobile-zone {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	min-width: 0;
+}
+
+.evln-mobile-zone--start {
+	justify-content: flex-start;
+}
+
+.evln-mobile-zone--center {
+	justify-content: center;
+	min-width: 0;
+}
+
+.evln-mobile-zone--end {
+	justify-content: flex-end;
+}
+
+.evln-mobile-row--primary:not(:has(.evln-mobile-zone--center)) {
+	justify-content: space-between;
+}
+
+.evln-mobile-item {
+	display: flex;
+	align-items: center;
+}
+
+/* Every interactive control in the mobile bar keeps a real touch target
+   (44x44, per WCAG 2.5.5 / platform guidance) regardless of the configured
+   icon glyph size — icon_size only scales the glyph, never the hit area. */
+.evln-mobile-row .evln-icon-btn,
+.evln-mobile-toggle {
+	min-width: 44px;
+	min-height: 44px;
+}
+
+.evln-mobile-row .evln-icon-btn svg {
+	width: var(--evln-mh-icon, 22px);
+	height: var(--evln-mh-icon, 22px);
+}
+
+.evln-mobile-item--logo .evln-logo-text {
+	display: inline-block;
+	max-width: var(--evln-mh-logo-max, 120px);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 1.0625rem;
+}
+
+.evln-mobile-item--logo img {
+	max-width: var(--evln-mh-logo-max, 120px);
+	max-height: calc(var(--evln-mh-height, 64px) - 20px);
+	width: auto;
+	height: auto;
+	object-fit: contain;
+}
+
+/* Mobile toggle (hamburger) */
+.evln-mobile-toggle {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	border-radius: var(--evln-r-md);
+	flex-shrink: 0;
+}
+
+.evln-mobile-toggle:hover {
+	background: var(--evln-elevated);
+}
+
+.evln-mobile-toggle__bar {
+	width: 18px;
+	height: 2px;
+	border-radius: 1px;
+	background: currentColor;
+	transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.evln-mobile-toggle[aria-expanded="true"] .evln-mobile-toggle__bar:nth-child(2) {
+	transform: translateY(6px) rotate(45deg);
+}
+
+.evln-mobile-toggle[aria-expanded="true"] .evln-mobile-toggle__bar:nth-child(3) {
+	opacity: 0;
+}
+
+.evln-mobile-toggle[aria-expanded="true"] .evln-mobile-toggle__bar:nth-child(4) {
+	transform: translateY(-6px) rotate(-45deg);
+}
+
+/*
+ * Priority-based narrowing: rather than one fixed breakpoint, optional
+ * mobile-row items thin out as the header's own width shrinks (container
+ * query, not viewport — correct even inside a narrow theme preview frame).
+ * Priority 0 (menu) and 1 (logo) are never hidden. This is a starting
+ * heuristic tuned for the 3-icon "Standard" cap; confirm visually across
+ * 320–430px and adjust the two thresholds below if a device clips early.
+ */
+@container evln-mobile (max-width: 359px) {
+	.evln-mobile-item[data-priority="4"] {
+		display: none;
+	}
+}
+
+@container evln-mobile (max-width: 329px) {
+	.evln-mobile-item[data-priority="3"] {
+		display: none;
+	}
+}
+
+/* ==========================================================================
+   Mobile navigation drawer: offcanvas / fullscreen / dropdown chrome
+   ========================================================================== */
+
+.evln-mnav-drawer[hidden] {
+	display: none;
+}
+
+.evln-mnav-drawer--offcanvas,
+.evln-mnav-drawer--fullscreen {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+}
+
+.evln-mnav-drawer--dropdown {
+	position: absolute;
+	inset-inline: 0;
+	top: 100%;
+	z-index: 90;
+}
+
+.evln-mnav-drawer__backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(var(--evln-shadow-color), 0.45);
+}
+
+.evln-mnav-drawer__panel {
+	position: relative;
+	background: var(--evln-surface);
+	color: var(--evln-text);
+	display: flex;
+	flex-direction: column;
+	gap: var(--evln-sp-lg);
+}
+
+/* Offcanvas: side panel, RTL-aware slide direction. */
+.evln-mnav-drawer--offcanvas .evln-mnav-drawer__panel {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	inset-inline-end: 0;
+	width: min(340px, 88vw);
+	padding: var(--evln-sp-lg);
+	box-shadow: var(--evln-shadow-lg);
+	transform: translateX(100%);
+	transition: transform 0.28s ease;
+	overflow-y: auto;
+}
+
+[dir="rtl"] .evln-mnav-drawer--offcanvas .evln-mnav-drawer__panel {
+	transform: translateX(-100%);
+}
+
+.evln-mnav-drawer--offcanvas.is-open .evln-mnav-drawer__panel {
+	transform: translateX(0);
+}
+
+/* Fullscreen: covers the viewport, fades/slides up instead of sideways. */
+.evln-mnav-drawer--fullscreen .evln-mnav-drawer__panel {
+	position: absolute;
+	inset: 0;
+	padding: var(--evln-sp-xl) var(--evln-sp-lg);
+	opacity: 0;
+	transform: translateY(10px);
+	transition: opacity 0.22s ease, transform 0.22s ease;
+	overflow-y: auto;
+}
+
+.evln-mnav-drawer--fullscreen.is-open .evln-mnav-drawer__panel {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Dropdown: inline panel under the header, no backdrop, no fixed positioning. */
+.evln-mnav-drawer--dropdown .evln-mnav-drawer__panel {
+	border-top: 1px solid var(--evln-border);
+	box-shadow: var(--evln-shadow-md);
+	padding: var(--evln-sp-lg);
+	max-height: min(70vh, 520px);
+	overflow-y: auto;
+	opacity: 0;
+	transform: translateY(-6px);
+	transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.evln-mnav-drawer--dropdown.is-open .evln-mnav-drawer__panel {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.evln-mnav-drawer--dropdown .evln-mnav-drawer__header,
+.evln-mnav-drawer--dropdown .evln-mnav-drawer__social {
+	display: none;
+}
+
+.evln-mnav-drawer__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.evln-mnav-drawer__close {
+	width: 40px;
+	height: 40px;
+	min-width: 44px;
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	background: var(--evln-elevated);
+	border-radius: var(--evln-r-md);
+	cursor: pointer;
+	color: var(--evln-text);
+}
+
+/* Drill-down panels: one visible at a time, entering with a quiet fade —
+   a horizontal slide-stack was considered but a plain fade is far less
+   likely to misbehave without a live browser check (see verification note). */
+.evln-mnav {
+	position: relative;
+	flex: 1;
+	min-height: 0;
+}
+
+.evln-mnav__panel[hidden] {
+	display: none;
+}
+
+.evln-mnav__panel {
+	animation: evln-mnav-fade 0.16s ease;
+}
+
+@keyframes evln-mnav-fade {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.evln-mnav__panel-title {
+	font-family: var(--evln-font-display);
+	font-weight: 600;
+	font-size: 1.0625rem;
+	margin-block: 0 var(--evln-sp-md);
+}
+
+.evln-mnav__back {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 44px;
+	padding-inline: 4px;
+	margin-bottom: 4px;
+	border: none;
+	background: transparent;
+	color: var(--evln-muted);
+	font-size: 0.875rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.evln-mnav__back:hover {
+	color: var(--evln-primary);
+}
+
+[dir="rtl"] .evln-mnav__back svg {
+	transform: scaleX(-1);
+}
+
+.evln-mnav__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.evln-mnav__item {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid var(--evln-border);
+}
+
+.evln-mnav__link {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	min-height: 48px;
+	color: var(--evln-text);
+	text-decoration: none;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.evln-mnav__link:hover {
+	color: var(--evln-primary);
+}
+
+.evln-mnav__expand {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	flex-shrink: 0;
+	border: none;
+	background: transparent;
+	color: var(--evln-muted);
+	cursor: pointer;
+	border-radius: var(--evln-r-md);
+}
+
+.evln-mnav__expand:hover {
+	background: var(--evln-elevated);
+	color: var(--evln-primary);
+}
+
+[dir="rtl"] .evln-mnav__expand svg {
+	transform: scaleX(-1);
+}
+
+.evln-mnav__empty {
+	color: var(--evln-muted);
+	font-size: 0.875rem;
+}
+
+.evln-mnav-drawer__logo {
+	font-size: 1.125rem;
+}
+
+/* Body scroll lock while an overlay drawer (offcanvas/fullscreen) is open. */
+.evln-scroll-lock {
+	overflow: hidden;
+}

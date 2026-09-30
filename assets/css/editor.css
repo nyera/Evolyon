@@ -1,0 +1,26 @@
+/*
+ * Applied inside the block editor iframe alongside the same generated token
+ * CSS (see evolyon_editor_assets()), so writing content looks like the
+ * front end from the first keystroke.
+ */
+
+.editor-styles-wrapper {
+	background: var(--evln-surface);
+	color: var(--evln-text);
+	font-family: var(--evln-font-body);
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+	font-family: var(--evln-font-display);
+	font-weight: 600;
+	color: var(--evln-text);
+}
+
+.editor-styles-wrapper a {
+	color: var(--evln-primary);
+}

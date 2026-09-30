@@ -1,0 +1,121 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"settings": {
+		"layout": {
+			"contentSize": "720px",
+			"wideSize": "1180px"
+		},
+		"color": {
+			"custom": true,
+			"customDuotone": false,
+			"palette": [
+				{ "slug": "primary", "name": "Primary", "color": "#005A51" },
+				{ "slug": "accent", "name": "Accent", "color": "#BB5C0C" },
+				{ "slug": "background", "name": "Background", "color": "#F7FBFA" },
+				{ "slug": "surface", "name": "Surface", "color": "#FFFFFF" },
+				{ "slug": "elevated", "name": "Elevated Surface", "color": "#EAF2F4" },
+				{ "slug": "text", "name": "Text", "color": "#091F36" },
+				{ "slug": "muted", "name": "Muted text", "color": "#556574" },
+				{ "slug": "border", "name": "Border", "color": "#D3DDE0" },
+				{ "slug": "success", "name": "Success", "color": "#25794F" },
+				{ "slug": "warning", "name": "Warning", "color": "#966018" },
+				{ "slug": "error", "name": "Error", "color": "#B03B3B" }
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{ "slug": "display", "name": "Display", "fontFamily": "'Bricolage Grotesque',system-ui,sans-serif" },
+				{ "slug": "body", "name": "Body", "fontFamily": "'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif" },
+				{ "slug": "mono", "name": "Mono", "fontFamily": "'IBM Plex Mono',ui-monospace,monospace" }
+			],
+			"fontSizes": [
+				{ "slug": "small", "name": "Small", "size": "0.875rem" },
+				{ "slug": "medium", "name": "Body", "size": "1rem" },
+				{ "slug": "large", "name": "Large", "size": "1.25rem" },
+				{ "slug": "x-large", "name": "Heading", "size": "clamp(1.75rem, 1.6rem + 0.8vw, 2.25rem)" },
+				{ "slug": "xx-large", "name": "Display", "size": "clamp(2.75rem, 2.3rem + 2.2vw, 4rem)" }
+			]
+		},
+		"spacing": {
+			"spacingSizes": [
+				{ "slug": "xs", "name": "XS", "size": "0.25rem" },
+				{ "slug": "sm", "name": "SM", "size": "0.5rem" },
+				{ "slug": "md", "name": "MD", "size": "1rem" },
+				{ "slug": "lg", "name": "LG", "size": "1.5rem" },
+				{ "slug": "xl", "name": "XL", "size": "2rem" },
+				{ "slug": "2xl", "name": "2XL", "size": "3rem" },
+				{ "slug": "3xl", "name": "3XL", "size": "4rem" }
+			],
+			"units": [ "px", "em", "rem", "%", "vw", "vh" ]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--evln-bg)",
+			"text": "var(--evln-text)"
+		},
+		"typography": {
+			"fontFamily": "var(--evln-font-body)",
+			"fontSize": "1rem",
+			"lineHeight": "1.6"
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "var(--evln-primary)"
+				}
+			},
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--evln-font-display)",
+					"fontWeight": "600",
+					"lineHeight": "1.15",
+					"letterSpacing": "-0.01em"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "clamp(2.75rem, 2.3rem + 2.2vw, 4rem)"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "clamp(2.25rem, 2rem + 1.4vw, 3rem)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "clamp(1.75rem, 1.6rem + 0.8vw, 2.25rem)"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontSize": "clamp(1.375rem, 1.3rem + 0.4vw, 1.625rem)"
+				}
+			},
+			"h5": {
+				"typography": {
+					"fontSize": "1.25rem"
+				}
+			},
+			"h6": {
+				"typography": {
+					"fontSize": "1.125rem"
+				}
+			},
+			"button": {
+				"border": {
+					"radius": "8px"
+				},
+				"color": {
+					"background": "var(--wp--preset--color--primary)",
+					"text": "var(--wp--preset--color--surface)"
+				},
+				"typography": {
+					"fontWeight": "600"
+				}
+			}
+		}
+	}
+}

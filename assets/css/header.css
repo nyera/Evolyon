@@ -1,0 +1,516 @@
+/*
+ * Header Builder — DESKTOP composition only: rows, zones, elements, and the
+ * sticky/shrink/transparent/hide-on-scroll states. Zones use flex-start/
+ * center/flex-end so they read correctly in RTL without a separate
+ * stylesheet. The mobile composition is entirely separate — see
+ * mobile-header.css and Evolyon_Mobile_Header_Render's docblock for why.
+ * `.evln-header-desktop` is shown/hidden opposite `.evln-header-mobile` by
+ * the inline breakpoint rule added in evolyon_enqueue_assets().
+ */
+
+.evln-header {
+	position: relative;
+	background: var(--evln-surface);
+	border-bottom: 1px solid var(--evln-border);
+	z-index: 100;
+}
+
+.evln-header-row__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	gap: var(--evln-sp-lg);
+	min-height: 72px;
+}
+
+/* When all three zones actually have content, the center zone should get
+   the remaining space and stay visually centered regardless of how wide
+   the start/end zones' own content is — a plain 3-way flex (flex:1 each)
+   can't do that if start/end content widths differ, only equal-width grid
+   tracks or this auto/1fr/auto split can. */
+.evln-header-row__inner:has(.evln-header-zone--center:not(:empty)) {
+	grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.evln-header-row__inner:has(.evln-header-zone--center:not(:empty)) .evln-header-zone--start {
+	grid-column: 1;
+}
+
+.evln-header-row__inner:has(.evln-header-zone--center:not(:empty)) .evln-header-zone--center {
+	grid-column: 2;
+}
+
+.evln-header-row__inner:has(.evln-header-zone--center:not(:empty)) .evln-header-zone--end {
+	grid-column: 3;
+}
+
+.evln-header-row--top .evln-header-row__inner {
+	min-height: 44px;
+	font-size: 0.8125rem;
+	color: var(--evln-muted);
+	border-bottom: 1px solid var(--evln-border);
+}
+
+.evln-header-zone {
+	display: flex;
+	align-items: center;
+	gap: var(--evln-sp-md);
+}
+
+.evln-header-zone--start {
+	justify-content: flex-start;
+	flex: 1;
+}
+
+.evln-header-zone--center {
+	justify-content: center;
+	flex: 1;
+}
+
+.evln-header-zone--end {
+	justify-content: flex-end;
+	flex: 1;
+}
+
+.evln-el {
+	display: flex;
+	align-items: center;
+}
+
+.evln-logo-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.625rem;
+	text-decoration: none;
+	flex-shrink: 0;
+}
+
+.evln-logo-mark {
+	display: grid;
+	place-items: center;
+	width: 2rem;
+	height: 2rem;
+	background: var(--evln-primary);
+	color: var(--evln-surface);
+	font-family: var(--evln-font-body);
+	font-weight: 700;
+	font-size: 0.875rem;
+	flex-shrink: 0;
+}
+
+.evln-logo-text {
+	font-family: var(--evln-font-display);
+	font-weight: 600;
+	font-size: 1.25rem;
+	color: var(--evln-text);
+	text-decoration: none;
+}
+
+.evln-nav__menu {
+	display: flex;
+	align-items: center;
+	gap: var(--evln-sp-lg);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.evln-nav__menu > li > a {
+	display: flex;
+	align-items: center;
+	height: 2.5rem;
+	padding-inline: 0.75rem;
+	border-radius: var(--evln-r-md);
+	color: var(--evln-muted);
+	text-decoration: none;
+	font-size: 0.875rem;
+	font-weight: 500;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.evln-nav__menu > li > a:hover {
+	background: var(--evln-elevated);
+	color: var(--evln-text);
+}
+
+.evln-nav__menu > li.current-menu-item > a,
+.evln-nav__menu > li > a[aria-current="page"] {
+	background: var(--evln-elevated);
+	color: var(--evln-primary);
+}
+
+/*
+ * Mega-menu dropdowns (e.g. "Pages", "Demos"): WP core's default markup
+ * for a submenu is just a plain nested <ul> with no positioning at all —
+ * this turns it into an actual dropdown panel, shown on hover/focus of the
+ * parent item so it also works via keyboard tabbing, not mouse-only.
+ */
+.evln-nav__menu li.menu-item-has-children {
+	position: relative;
+}
+
+.evln-nav__menu > li.menu-item-has-children > a::after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	margin-inline-start: 0.35rem;
+	border-inline-end: 1.5px solid currentColor;
+	border-block-end: 1.5px solid currentColor;
+	transform: rotate(45deg) translateY(-2px);
+	opacity: 0.6;
+}
+
+/*
+ * .evln-nav__submenu-panel is the positioned/animated wrapper (matches the
+ * reference's own dropdown: a fixed 26rem-wide bordered card with its own
+ * intro line above a 2-column item grid) — .evln-nav__submenu is just the
+ * <ul> grid inside it, no longer the positioned element itself.
+ */
+.evln-nav__submenu-panel {
+	position: absolute;
+	top: 100%;
+	inset-inline-start: 0;
+	width: 26rem;
+	margin-top: 0.5rem;
+	padding: 1.25rem;
+	background: var(--evln-surface);
+	border: 1px solid var(--evln-border);
+	border-radius: var(--evln-r-lg);
+	box-shadow: var(--evln-shadow-md);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(4px);
+	transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+	z-index: 30;
+}
+
+.evln-nav__menu li.menu-item-has-children:hover > .evln-nav__submenu-panel,
+.evln-nav__menu li.menu-item-has-children:focus-within > .evln-nav__submenu-panel {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.evln-nav__submenu-intro {
+	margin: 0 0 1rem;
+	font-size: 0.75rem;
+	color: var(--evln-muted);
+}
+
+/*
+ * Reference switches a dropdown panel to a 2-column grid only once it has
+ * enough items to need it (Pages: 6 items, 2 cols; Demos: 2 items, single
+ * column) — matched here by item count instead of a per-menu PHP flag,
+ * since the walker has no clean way to know which top-level item it's
+ * inside. :has() is already an accepted pattern in this codebase.
+ */
+.evln-nav__submenu {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.evln-nav__submenu:has(> li:nth-child(5)) {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.evln-nav__submenu li a {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+	padding: 0.6rem 0.75rem;
+	border-radius: var(--evln-r-md);
+	text-decoration: none;
+	color: var(--evln-text);
+}
+
+.evln-nav__submenu li a:hover {
+	background: var(--evln-elevated);
+}
+
+.evln-nav__item-title {
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.evln-nav__item-desc {
+	font-size: 0.75rem;
+	color: var(--evln-muted);
+}
+
+/* Sticky / shrink / transparent / hide-on-scroll — states toggled by header-frontend.js. */
+.evln-header--sticky {
+	position: sticky;
+	top: 0;
+	transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.25s ease;
+}
+
+.evln-header--sticky.is-stuck {
+	box-shadow: var(--evln-shadow-sm);
+}
+
+.evln-header--shrink.is-stuck .evln-header-row--main .evln-header-row__inner {
+	min-height: 56px;
+	transition: min-height 0.2s ease;
+}
+
+.evln-header--transparent:not(.is-stuck) {
+	position: absolute;
+	inset-inline: 0;
+	top: 0;
+	background: transparent;
+	border-bottom-color: transparent;
+}
+
+.evln-header--transparent:not(.is-stuck) .evln-logo-text,
+.evln-header--transparent:not(.is-stuck) .evln-nav__menu a,
+.evln-header--transparent:not(.is-stuck) .evln-icon-btn {
+	color: var(--evln-surface);
+}
+
+.evln-header--hide-on-scroll.is-hidden {
+	transform: translateY(-100%);
+}
+
+/* Search toggle — shared markup/behavior between desktop and mobile. */
+.evln-search-toggle {
+	position: relative;
+}
+
+/* ---- Search modal: full-screen overlay + centered card, matching the
+   approved design system's own reference implementation — replaces an
+   earlier small inline dropdown panel, which read as an afterthought next
+   to the rest of the product's now-premium finish. ---- */
+.evln-search-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 12vh 1rem 1rem;
+}
+
+/*
+ * The browser's own UA stylesheet rule for [hidden] (display:none) loses
+ * to the class-based `display: flex` above, since a class selector is
+ * more specific than a bare attribute selector — without this, the modal
+ * stayed visible regardless of the `hidden` attribute JS toggles.
+ * Confirmed live: it rendered open on every page load.
+ */
+.evln-search-modal[hidden] {
+	display: none;
+}
+
+.evln-search-modal__backdrop {
+	/* Deliberately a fixed dark scrim, not an --evln-* token — a backdrop
+	   needs to stay dark for contrast against the panel it's behind
+	   regardless of light/dark mode, unlike --evln-ink which inverts to
+	   near-white in dark mode (correct for text, wrong for this). */
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.55);
+}
+
+.evln-search-modal__panel {
+	position: relative;
+	width: min(560px, 100%);
+	background: var(--evln-surface);
+	border-radius: var(--evln-r-lg);
+	box-shadow: var(--evln-shadow-md);
+	padding: var(--evln-sp-xl);
+}
+
+.evln-search-modal__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: var(--evln-sp-md);
+}
+
+.evln-search-modal__title {
+	font-size: 1.25rem;
+	margin: 0;
+}
+
+.evln-search-modal__close {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border: none;
+	border-radius: var(--evln-r-md);
+	background: transparent;
+	color: var(--evln-muted);
+	cursor: pointer;
+}
+
+.evln-search-modal__close:hover {
+	background: var(--evln-elevated);
+	color: var(--evln-text);
+}
+
+.evln-search-modal__form {
+	position: relative;
+	margin-bottom: var(--evln-sp-lg);
+}
+
+.evln-search-modal__form-icon {
+	position: absolute;
+	top: 50%;
+	inset-inline-start: 0.9rem;
+	transform: translateY(-50%);
+	color: var(--evln-muted);
+	pointer-events: none;
+}
+
+.evln-search-modal__input {
+	width: 100%;
+	padding: 0.85rem 1rem 0.85rem 2.75rem;
+	font-family: inherit;
+	font-size: 1rem;
+	border: 1px solid var(--evln-border-strong);
+	border-radius: var(--evln-r-md);
+	background: var(--evln-surface);
+	color: var(--evln-text);
+}
+
+.evln-search-modal__input:focus {
+	outline: none;
+	border-color: var(--evln-accent);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--evln-accent) 20%, transparent);
+}
+
+.evln-search-modal__popular-label {
+	display: block;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--evln-muted);
+	margin-bottom: 0.6rem;
+}
+
+.evln-search-modal__popular-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.evln-search-modal__pill {
+	padding: 0.4rem 0.9rem;
+	border: 1px solid var(--evln-border);
+	border-radius: var(--evln-r-full);
+	background: var(--evln-elevated);
+	color: var(--evln-text);
+	font-size: 0.8125rem;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+.evln-search-modal__pill:hover {
+	border-color: var(--evln-primary);
+	color: var(--evln-primary);
+}
+
+/* Language switcher — shared between desktop and mobile. */
+.evln-lang-switcher ul,
+.evln-lang-switcher__list {
+	display: flex;
+	gap: 0.75rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 0.8125rem;
+}
+
+.evln-lang-switcher a {
+	color: var(--evln-muted);
+	text-decoration: none;
+}
+
+.evln-lang-switcher a.is-active,
+.evln-lang-switcher a:hover {
+	color: var(--evln-primary);
+}
+
+/* Social icons — shared list styling used in header, offcanvas, and footer. */
+.evln-header-social,
+.evln-mnav-drawer__social {
+	display: flex;
+	gap: 0.75rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.evln-header-social a,
+.evln-mnav-drawer__social a {
+	color: var(--evln-muted);
+}
+
+.evln-header-social a:hover,
+.evln-mnav-drawer__social a:hover {
+	color: var(--evln-primary);
+}
+
+/* `.evln-header-mobile` is hidden by default; mobile-header.css and the
+   inline breakpoint rule are what reveal it below the configured breakpoint. */
+.evln-header-mobile {
+	display: none;
+}
+
+/* ---- Palette switcher (opt-in, typically placed in the top utility row —
+   see Evolyon_Element_Palette_Switcher's docblock for why it isn't a
+   header default). ---- */
+.evln-palette-switcher {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.evln-palette-switcher__label {
+	color: var(--evln-muted);
+}
+
+.evln-palette-switcher__select {
+	font: inherit;
+	font-size: 0.8125rem;
+	color: var(--evln-text);
+	background: var(--evln-surface);
+	border: 1px solid var(--evln-border-strong);
+	border-radius: var(--evln-r-sm);
+	padding: 0.25rem 0.5rem;
+}
+
+/*
+ * Dark mode toggle: shows the icon matching the CURRENTLY active scheme
+ * (sun while light, moon while dark), using the exact same
+ * data-theme/prefers-color-scheme contract the token output CSS itself
+ * uses (see Evolyon_Token_Output) — so this never drifts out of sync with
+ * which tokens are actually active.
+ */
+.evln-theme-toggle__icon--moon {
+	display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .evln-theme-toggle__icon--sun {
+		display: none;
+	}
+	:root:not([data-theme="light"]) .evln-theme-toggle__icon--moon {
+		display: block;
+	}
+}
+
+:root[data-theme="dark"] .evln-theme-toggle__icon--sun {
+	display: none;
+}
+
+:root[data-theme="dark"] .evln-theme-toggle__icon--moon {
+	display: block;
+}

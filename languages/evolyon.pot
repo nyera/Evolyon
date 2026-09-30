@@ -1,0 +1,630 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Evolyon 0.1.0\n"
+"Report-Msgid-Bugs-To: https://evolyon.com/support\n"
+"POT-Creation-Date: 2026-08-30T06:42:57.443Z\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: evolyon\n"
+
+#: archive.php:38
+msgid "&larr; Newer"
+msgstr ""
+
+#: patterns/hero-simple.php:16
+msgid "A headline that states the one thing you do"
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:64 inc/header-builder/elements/class-element-cta.php:45
+msgid "Accent"
+msgstr ""
+
+#: inc/accessibility/class-evolyon-accessibility.php:42
+msgid "Accessibility"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-account.php:17
+msgid "Account"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:84
+msgid "Add element"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-social.php:25
+msgid "Add links in Evolyon → Social Profiles"
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:86
+msgid "Always dark"
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:85
+msgid "Always light"
+msgstr ""
+
+#: inc/template-functions/class-evolyon-blog.php:48
+msgid "Archive layout"
+msgstr ""
+
+#: inc/header-builder/class-evolyon-mobile-header-render.php:228
+msgid "Back"
+msgstr ""
+
+#: 404.php:18
+msgid "Back to homepage"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:93
+msgid "Behavior"
+msgstr ""
+
+#: inc/template-functions/class-evolyon-blog.php:30
+msgid "Blog"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:97
+msgid "Bottom Bar"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:46
+msgid "Brand Block"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cta.php:36
+msgid "Button link"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cta.php:31
+msgid "Button text"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cta.php:16
+msgid "CTA Button"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cart.php:18 inc/header-builder/elements/class-element-cart.php:40
+msgid "Cart"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:61
+msgid "Center"
+msgstr ""
+
+#: inc/header-builder/class-evolyon-header-config.php:155
+msgid "Centered Logo"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cart.php:99
+msgid "Checkout"
+msgstr ""
+
+#: inc/header-builder/class-evolyon-header-config.php:151
+msgid "Classic Two-Row"
+msgstr ""
+
+#: inc/header-builder/class-evolyon-mobile-header-render.php:190
+msgid "Close menu"
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:62
+msgid "Color palette"
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:82
+msgid "Color scheme"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:96
+msgid "Columns"
+msgstr ""
+
+#: comments.php:52
+msgid "Comment"
+msgstr ""
+
+#: comments.php:43
+msgid "Comments are closed."
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:98
+msgid "Compact shows only the essentials; Standard is the balanced default; Expanded adds a second row for search or a CTA."
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:32
+msgid "Company"
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:34
+msgid "Content"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:93
+msgid "Corporate"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:48
+msgid "Custom HTML"
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:38
+msgid "Design System"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:41
+msgid "Disable Google Fonts"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:39
+msgid "Disable emoji scripts"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:40
+msgid "Disable oEmbed discovery"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:99
+msgid "Elements shown in the mobile bar"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:61
+msgid "Emerald"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:87
+msgid "Enable this row"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:62
+msgid "End"
+msgstr ""
+
+#: inc/accessibility/class-evolyon-accessibility.php:60
+msgid "Enhanced focus outlines"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:113
+msgid "Enter a URL to show that platform's icon anywhere a Social Icons element or the footer bottom bar is enabled."
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:30 inc/elementor/class-evolyon-elementor.php:65
+msgid "Evolyon"
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:20
+msgid "Evolyon Button"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:139 inc/design-system/class-evolyon-token-registry.php:45
+msgid "Evolyon Default"
+msgstr ""
+
+#: functions.php:26
+msgid "Evolyon requires PHP %1$s or higher. You are running PHP %2$s — please ask your host to upgrade."
+msgstr ""
+
+#: inc/integrations/class-evolyon-social-profiles.php:30
+msgid "Facebook"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:41
+msgid "Falls back to system fonts instead of loading Bricolage Grotesque/IBM Plex — use this if you self-host fonts or need to avoid third-party requests entirely."
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:84
+msgid "Follow visitor system setting"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:36
+msgid "Footer Bottom Bar"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:79
+msgid "Footer Builder"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:33 inc/footer-builder/class-evolyon-footer-config.php:56
+msgid "Footer Column 1"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:34 inc/footer-builder/class-evolyon-footer-config.php:57
+msgid "Footer Column 2"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:35 inc/footer-builder/class-evolyon-footer-config.php:58
+msgid "Footer Column 3"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:101
+msgid "Footer Layout"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:59
+msgid "Full"
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:42 inc/header-builder/class-evolyon-header-config.php:126 inc/header-builder/class-evolyon-header-config.php:140 inc/header-builder/class-evolyon-header-config.php:60 inc/header-builder/elements/class-element-cta.php:21 patterns/hero-simple.php:26
+msgid "Get started"
+msgstr ""
+
+#: inc/template-functions/class-evolyon-blog.php:50
+msgid "Grid"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:48
+msgid "Header Builder"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:70
+msgid "Header Layout"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:57
+msgid "Independent of each visitor's OS-level \"reduce motion\" setting, which is always respected regardless of this."
+msgstr ""
+
+#: inc/integrations/class-evolyon-social-profiles.php:34
+msgid "Instagram"
+msgstr ""
+
+#: inc/admin/class-evolyon-requirements.php:37
+msgid "Install and activate the Evolyon Toolkit plugin to enable the form builder, authentication, and the user dashboard."
+msgstr ""
+
+#: inc/header-builder/elements/class-element-language-switcher.php:16
+msgid "Language Switcher"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:92
+msgid "Layout"
+msgstr ""
+
+#: comments.php:51
+msgid "Leave a comment"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:33
+msgid "Legal"
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:49
+msgid "Link"
+msgstr ""
+
+#: inc/integrations/class-evolyon-social-profiles.php:42
+msgid "LinkedIn"
+msgstr ""
+
+#: inc/template-functions/class-evolyon-blog.php:51
+msgid "List"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:116
+msgid "Loading builder…"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-account.php:41
+msgid "Log in"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-logo.php:15
+msgid "Logo"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:101
+msgid "Luxury"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:57
+msgid "Main Row"
+msgstr ""
+
+#: inc/header-builder/class-evolyon-mobile-header-render.php:181 inc/header-builder/class-evolyon-mobile-header-render.php:200
+msgid "Menu"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:95
+msgid "Mobile"
+msgstr ""
+
+#: inc/header-builder/class-evolyon-header-config.php:147
+msgid "Modern Row"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:109
+msgid "Monochrome"
+msgstr ""
+
+#: single.php:74
+msgid "More posts"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:102
+msgid "Move down"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:101
+msgid "Move up"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-nav.php:18
+msgid "Navigation"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:47
+msgid "Navigation Menu"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:49
+msgid "Newsletter"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-render.php:117
+msgid "Newsletter form — requires the Evolyon Toolkit form builder."
+msgstr ""
+
+#: inc/header-builder/class-evolyon-mobile-header-render.php:197
+msgid "No menu has been assigned yet."
+msgstr ""
+
+#: archive.php:45
+msgid "No posts found."
+msgstr ""
+
+#: index.php:37
+msgid "Nothing found."
+msgstr ""
+
+#: search.php:38
+msgid "Nothing matched your search. Try different keywords."
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:53
+msgid "Ocean"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:61
+msgid "Off"
+msgstr ""
+
+#: archive.php:39
+msgid "Older &rarr;"
+msgstr ""
+
+#: patterns/hero-simple.php:20
+msgid "One or two sentences backing that claim up — specific enough to be believable, short enough to actually get read."
+msgstr ""
+
+#: inc/header-builder/class-evolyon-mobile-header-render.php:254
+msgid "Open %s submenu"
+msgstr ""
+
+#: inc/header-builder/class-evolyon-mobile-header-render.php:158
+msgid "Open menu"
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:65 inc/header-builder/elements/class-element-cta.php:46
+msgid "Outline"
+msgstr ""
+
+#: page.php:49 single.php:52
+msgid "Page"
+msgstr ""
+
+#: page.php:49 single.php:52
+msgid "Pages:"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:34
+msgid "Performance"
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:63 inc/header-builder/elements/class-element-cta.php:44
+msgid "Primary"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:32
+msgid "Primary (Header)"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:31
+msgid "Product"
+msgstr ""
+
+#: patterns/cta-banner.php:16
+msgid "Ready to see it for yourself?"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:60
+msgid "Reduced (short, essential transitions only)"
+msgstr ""
+
+#: template-parts/related-posts.php:16
+msgid "Related posts"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:85
+msgid "Remove"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cart.php:86
+msgid "Remove item"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:39
+msgid "Removes the ~15KB emoji-detection script and inline styles WordPress loads on every page by default."
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:89
+msgid "Replace the current layout with this one? Behavior settings are kept."
+msgstr ""
+
+#: inc/header-builder/elements/class-element-wishlist.php:31
+msgid "Requires Evolyon Toolkit"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-language-switcher.php:24
+msgid "Requires WPML or Polylang"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cart.php:30
+msgid "Requires WooCommerce"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:69
+msgid "Royal"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-search.php:17
+msgid "Search"
+msgstr ""
+
+#: search.php:20
+msgid "Search results for: %s"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:103
+msgid "Secondary row (Expanded mode only)"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:86
+msgid "Settings"
+msgstr ""
+
+#: inc/template-functions/class-evolyon-blog.php:69
+msgid "Show author box on posts"
+msgstr ""
+
+#: inc/template-functions/class-evolyon-blog.php:86
+msgid "Show related posts"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:56
+msgid "Site-wide animations"
+msgstr ""
+
+#: inc/accessibility/class-evolyon-accessibility.php:34
+msgid "Skip to content"
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:50 inc/header-builder/elements/class-element-social.php:17
+msgid "Social Icons"
+msgstr ""
+
+#: inc/customizer/class-evolyon-header-footer-customizer.php:110
+msgid "Social Profiles"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:60
+msgid "Start"
+msgstr ""
+
+#: patterns/cta-banner.php:22
+msgid "Start free trial"
+msgstr ""
+
+#: inc/performance/class-evolyon-performance.php:40
+msgid "Stops loading wp-embed.js and the oEmbed discovery links. Turn this off only if you don't embed other WordPress sites' content."
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:59 inc/header-builder/elements/class-element-cta.php:41
+msgid "Style"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cart.php:93
+msgid "Subtotal"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:85
+msgid "Sunset"
+msgstr ""
+
+#: inc/customizer/class-evolyon-customizer.php:63
+msgid "Swaps primary, accent, and neutral tones across the whole site."
+msgstr ""
+
+#: inc/elementor/widgets/class-widget-button.php:40
+msgid "Text"
+msgstr ""
+
+#: 404.php:16
+msgid "The page you were looking for may have been moved or no longer exists. Try searching for what you need."
+msgstr ""
+
+#: inc/accessibility/class-evolyon-accessibility.php:61
+msgid "Thicker, higher-contrast focus ring for keyboard navigation, site-wide."
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:100
+msgid "This mode allows up to %d element(s) here."
+msgstr ""
+
+#: 404.php:15
+msgid "This page could not be found"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:91
+msgid "This zone is empty — add an element below."
+msgstr ""
+
+#: inc/integrations/class-evolyon-social-profiles.php:50
+msgid "TikTok"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-search.php:31
+msgid "Toggle search"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:56
+msgid "Top Bar"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:90
+msgid "Unavailable:"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:88
+msgid "Use this layout"
+msgstr ""
+
+#: inc/customizer/class-evolyon-builder-control.php:94
+msgid "Variants"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cart.php:98
+msgid "View cart"
+msgstr ""
+
+#: inc/design-system/class-evolyon-token-registry.php:77
+msgid "Violet"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-wishlist.php:17 inc/header-builder/elements/class-element-wishlist.php:39
+msgid "Wishlist"
+msgstr ""
+
+#: template-parts/author-box.php:13
+msgid "Written by"
+msgstr ""
+
+#: inc/integrations/class-evolyon-social-profiles.php:38
+msgid "X (Twitter)"
+msgstr ""
+
+#: inc/integrations/class-evolyon-social-profiles.php:46
+msgid "YouTube"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-account.php:41
+msgid "Your account"
+msgstr ""
+
+#: inc/header-builder/elements/class-element-cart.php:67
+msgid "Your cart is empty."
+msgstr ""
+
+#: inc/footer-builder/class-evolyon-footer-config.php:37
+msgid "© {year} {site_title}. All rights reserved."
+msgstr ""
+

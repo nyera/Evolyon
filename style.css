@@ -1,0 +1,21 @@
+/*
+Theme Name: Evolyon
+Theme URI: https://evolyon.com
+Author: Evolyon
+Author URI: https://evolyon.com
+Description: A modular, performance-first multipurpose WordPress theme built on a design-token system — nine color palettes, independently-designed light/dark modes, and RTL/Arabic support from the ground up. Pair with the Evolyon Toolkit plugin for the form builder, authentication, and the user dashboard.
+Version: 0.1.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: evolyon
+Domain Path: /languages
+Tags: custom-colors, custom-menu, custom-logo, editor-style, featured-images, translation-ready, rtl-language-support, block-patterns, wide-blocks
+
+Evolyon is distributed under the terms of the GNU General Public License v2 or later.
+This stylesheet intentionally carries no rules beyond this header — presentation
+is generated from the design-token registry (inc/design-system) and loaded via
+assets/css/base.css, so palette/typography changes never require editing CSS by hand.
+*/

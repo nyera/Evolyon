@@ -1,0 +1,56 @@
+/*
+ * Elementor compatibility. The .evln-main--elementor zero-padding rule
+ * lives in base.css (shared with the front page, which has the identical
+ * "content supplies its own section spacing" situation) — nothing
+ * Elementor-specific needs duplicating here for that.
+ */
+
+/* Elementor's own default button, used for any widget besides the
+   Evolyon Button one, at least inherits the theme's type/radius scale
+   instead of looking like a completely different product. */
+.elementor-button {
+	border-radius: var(--evln-r-md);
+	font-family: var(--evln-font-body);
+}
+
+/*
+ * theme.json's global `styles.elements.heading`/`h1`-`h6` rules apply
+ * `font-family: var(--evln-font-display)` on the bare tag selector — but
+ * Elementor's own per-page generated stylesheet (post-{ID}.css) sets
+ * `.elementor-widget-heading .elementor-heading-title { font-family:
+ * var(--e-global-typography-primary-font-family), Sans-serif; }`, a class
+ * selector that beats a bare tag selector regardless of source order, and
+ * `--e-global-typography-primary-font-family` is Elementor's own Kit
+ * default (Roboto) unless the site owner manually matches it in Site
+ * Settings. Confirmed live: a native Elementor Heading widget rendered in
+ * Roboto instead of the theme's display font, even though the theme's own
+ * custom button widget (which doesn't go through Elementor's typography
+ * system at all) was styled correctly. Targeting Elementor's own widget
+ * classes directly — same approach already used for `.elementor-button`
+ * above — instead of fighting Kit-variable indirection.
+ */
+/*
+ * Elementor's own per-post generated stylesheet (post-{ID}.css) uses this
+ * exact same selector and loads AFTER this file, so a plain declaration
+ * loses on source order alone even at matching specificity — every
+ * property here needs !important to actually win, not just font-family.
+ */
+.elementor-widget-heading .elementor-heading-title,
+.elementor-heading-title {
+	font-family: var(--evln-font-display) !important;
+	font-weight: 600 !important;
+	color: var(--evln-text) !important;
+}
+
+.elementor-widget-text-editor,
+.elementor-widget-text-editor p,
+.elementor-widget-icon-list .elementor-icon-list-text,
+.elementor-widget-image-box .elementor-image-box-title,
+.elementor-widget-image-box .elementor-image-box-description {
+	font-family: var(--evln-font-body) !important;
+	color: var(--evln-text) !important;
+}
+
+.elementor-widget-text-editor a:not(.elementor-button-link) {
+	color: var(--evln-primary);
+}

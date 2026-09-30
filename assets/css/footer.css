@@ -1,0 +1,221 @@
+/*
+ * Footer Builder front-end output: 1–4 responsive columns and the bottom bar.
+ */
+
+.evln-footer {
+	background: var(--evln-primary);
+	color: var(--evln-surface);
+	padding-block: var(--evln-sp-3xl) var(--evln-sp-lg);
+}
+
+.evln-footer .evln-logo-text {
+	color: var(--evln-surface);
+}
+
+/* Safety net for a Custom HTML footer column: without this, a plain <a>
+   would inherit the global var(--evln-primary) link color, which is
+   invisible against this footer's now-primary-colored background. */
+.evln-footer a {
+	color: inherit;
+}
+
+.evln-footer-columns {
+	display: grid;
+	gap: var(--evln-sp-xl);
+	grid-template-columns: repeat(var(--evln-footer-cols, 4), 1fr);
+	padding-bottom: var(--evln-sp-xl);
+}
+
+.evln-footer-columns--1 {
+	--evln-footer-cols: 1;
+}
+.evln-footer-columns--2 {
+	--evln-footer-cols: 2;
+}
+.evln-footer-columns--3 {
+	--evln-footer-cols: 3;
+}
+.evln-footer-columns--4 {
+	--evln-footer-cols: 4;
+}
+
+.evln-footer-columns--split {
+	display: grid;
+	grid-template-columns: 1.5fr 2fr;
+	gap: var(--evln-sp-3xl);
+	padding-bottom: var(--evln-sp-xl);
+}
+
+.evln-footer-primary {
+	display: flex;
+	flex-direction: column;
+	gap: var(--evln-sp-lg);
+}
+
+.evln-footer-nav-columns {
+	display: grid;
+	gap: var(--evln-sp-xl);
+	grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+	.evln-footer-nav-columns--3,
+	.evln-footer-nav-columns--4 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 900px) {
+	.evln-footer-columns--split {
+		grid-template-columns: 1fr;
+	}
+}
+
+.evln-footer-column__heading {
+	font-family: var(--evln-font-body);
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--evln-surface);
+	margin-bottom: var(--evln-sp-md);
+}
+
+.evln-footer-column__menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--evln-sp-sm);
+}
+
+.evln-footer-column__menu a {
+	color: color-mix(in srgb, var(--evln-surface) 65%, transparent);
+	text-decoration: none;
+	font-size: 0.875rem;
+}
+
+.evln-footer-column__menu a:hover {
+	color: var(--evln-surface);
+}
+
+.evln-footer-brand .evln-logo-text {
+	margin-bottom: var(--evln-sp-sm);
+}
+
+.evln-footer-brand__tagline {
+	color: color-mix(in srgb, var(--evln-surface) 70%, transparent);
+	font-size: 0.875rem;
+	line-height: 1.7;
+	max-width: 32ch;
+}
+
+.evln-footer-column__placeholder {
+	color: color-mix(in srgb, var(--evln-surface) 65%, transparent);
+	font-size: 0.8125rem;
+	font-style: italic;
+}
+
+/*
+ * Compact override for the Form Builder's [evolyon_form] output specifically
+ * when it renders as a footer newsletter signup — the builder's default
+ * markup (stacked label/input/full-width submit) is meant for a full-page
+ * contact form, not a narrow footer column, so this reflows it into a
+ * single input + button row without touching the shared form styles used
+ * everywhere else.
+ */
+.evln-footer-column__newsletter .evln-toolkit-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--evln-sp-sm);
+	align-items: flex-start;
+}
+
+.evln-footer-column__newsletter .evln-toolkit-form-grid,
+.evln-footer-column__newsletter .evln-toolkit-field {
+	margin: 0;
+	flex: 1 1 160px;
+}
+
+.evln-footer-column__newsletter .evln-toolkit-field label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.evln-footer-column__newsletter .evln-toolkit-form-submit {
+	margin: 0;
+	flex: 0 0 auto;
+}
+
+.evln-footer-column__newsletter input {
+	min-width: 0;
+}
+
+.evln-footer-social,
+.evln-footer-bottom__social {
+	display: flex;
+	gap: 0.75rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.evln-footer-social a,
+.evln-footer-bottom__social a {
+	color: color-mix(in srgb, var(--evln-surface) 65%, transparent);
+}
+
+.evln-footer-social a:hover,
+.evln-footer-bottom__social a:hover {
+	color: var(--evln-surface);
+}
+
+.evln-footer-bottom {
+	border-top: 1px solid color-mix(in srgb, var(--evln-surface) 15%, transparent);
+	padding-block: var(--evln-sp-lg);
+}
+
+.evln-footer-bottom__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--evln-sp-md);
+	font-size: 0.8125rem;
+	color: color-mix(in srgb, var(--evln-surface) 60%, transparent);
+}
+
+.evln-footer-bottom__menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: var(--evln-sp-lg);
+}
+
+.evln-footer-bottom__menu a {
+	color: color-mix(in srgb, var(--evln-surface) 60%, transparent);
+	text-decoration: none;
+}
+
+.evln-footer-bottom__menu a:hover {
+	color: var(--evln-surface);
+}
+
+@media (max-width: 767px) {
+	.evln-footer-columns {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 479px) {
+	.evln-footer-columns {
+		grid-template-columns: 1fr;
+	}
+}

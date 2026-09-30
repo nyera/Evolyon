@@ -1,0 +1,954 @@
+/*
+ * Styling for core Gutenberg blocks used in real page/post content — the
+ * front page (demo import or hand-built from patterns), About/Contact
+ * pages, and anything else assembled from core blocks rather than the
+ * theme's own PHP-rendered components. Bare core blocks read as an
+ * unstyled default theme; this is what makes a heading/columns/quote/
+ * details block actually look like part of the Evolyon design system
+ * instead of generic WordPress output.
+ */
+
+/* ---- Dashboard preview: a static, illustrative sidebar+stats+activity
+   layout — see Evolyon_Toolkit_Demo_Base::dashboard_preview() for why this
+   is a marketing page, not the real functional dashboard. ---- */
+.evln-dashboard-preview-section {
+	padding-block: var(--evln-sp-xl) !important;
+}
+
+.evln-dashboard-preview {
+	display: grid;
+	grid-template-columns: 220px 1fr;
+	gap: var(--evln-sp-xl);
+	background: var(--evln-surface);
+	border: 1px solid var(--evln-border);
+	border-radius: var(--evln-r-lg);
+	box-shadow: var(--evln-shadow-md);
+	padding: var(--evln-sp-lg);
+}
+
+.evln-dashboard-preview__sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	border-inline-end: 1px solid var(--evln-border);
+	padding-inline-end: var(--evln-sp-md);
+}
+
+.evln-dashboard-preview__sidebar-label {
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--evln-muted);
+	margin-bottom: 0.5rem;
+}
+
+.evln-dashboard-preview__nav {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+}
+
+.evln-dashboard-preview__nav-item {
+	padding: 0.5rem 0.65rem;
+	border-radius: var(--evln-r-md);
+	font-size: 0.875rem;
+	color: var(--evln-muted);
+}
+
+.evln-dashboard-preview__nav-item.is-active {
+	background: var(--evln-elevated);
+	color: var(--evln-primary);
+	font-weight: 600;
+}
+
+.evln-dashboard-preview__header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	margin-bottom: var(--evln-sp-lg);
+	gap: var(--evln-sp-md);
+	flex-wrap: wrap;
+}
+
+.evln-dashboard-preview__date {
+	display: block;
+	font-size: 0.8125rem;
+	color: var(--evln-muted);
+	margin-bottom: 0.25rem;
+}
+
+.evln-dashboard-preview__header h2 {
+	font-family: var(--evln-font-display);
+	font-size: 1.5rem;
+	margin: 0;
+}
+
+.evln-dashboard-preview__stats {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--evln-sp-md);
+	margin-bottom: var(--evln-sp-lg);
+}
+
+.evln-dashboard-preview__stat {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: var(--evln-sp-md);
+	background: var(--evln-elevated);
+	border-radius: var(--evln-r-md);
+	color: var(--evln-muted);
+}
+
+.evln-dashboard-preview__stat strong {
+	font-family: var(--evln-font-mono);
+	font-size: 1.375rem;
+	color: var(--evln-text);
+}
+
+.evln-dashboard-preview__stat span {
+	font-size: 0.8125rem;
+}
+
+.evln-dashboard-preview__grid {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr;
+	gap: var(--evln-sp-lg);
+	align-items: start;
+}
+
+.evln-dashboard-preview__activity-card {
+	border: 1px solid var(--evln-border);
+	border-radius: var(--evln-r-lg);
+	padding: var(--evln-sp-md);
+}
+
+.evln-dashboard-preview__activity-card h3 {
+	font-size: 1rem;
+	margin: 0 0 var(--evln-sp-sm);
+}
+
+.evln-dashboard-preview__activity-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--evln-sp-sm);
+}
+
+.evln-dashboard-preview__activity-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.6rem;
+}
+
+.evln-dashboard-preview__activity-dot {
+	width: 6px;
+	height: 6px;
+	margin-top: 0.4rem;
+	border-radius: 50%;
+	background: var(--evln-accent);
+	flex-shrink: 0;
+}
+
+.evln-dashboard-preview__activity-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+	font-size: 0.8125rem;
+}
+
+.evln-dashboard-preview__activity-text strong {
+	color: var(--evln-text);
+	font-weight: 600;
+}
+
+.evln-dashboard-preview__activity-text span {
+	color: var(--evln-muted);
+	font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+	.evln-dashboard-preview {
+		grid-template-columns: 1fr;
+	}
+
+	.evln-dashboard-preview__sidebar {
+		flex-direction: row;
+		flex-wrap: wrap;
+		border-inline-end: none;
+		border-bottom: 1px solid var(--evln-border);
+		padding-inline-end: 0;
+		padding-bottom: var(--evln-sp-md);
+	}
+
+	.evln-dashboard-preview__stats {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.evln-dashboard-preview__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ---- Secondary-page hero visual: a small geometric block collage used on
+   About/Contact and similar pages instead of the homepage's product
+   mockup — see Evolyon_Toolkit_Demo_Base::secondary_hero_visual(). ---- */
+.evln-hero-visual {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	gap: 0.75rem;
+	aspect-ratio: 5 / 4;
+}
+
+.evln-hero-visual__tall {
+	grid-row: 1 / -1;
+	background: var(--evln-primary);
+	border-radius: var(--evln-r-lg);
+	padding: var(--evln-sp-md);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.evln-hero-visual__index {
+	font-family: var(--evln-font-mono);
+	font-size: 0.75rem;
+	color: var(--evln-surface);
+	opacity: 0.85;
+}
+
+.evln-hero-visual__accent-bar {
+	display: block;
+	width: 32px;
+	height: 3px;
+	background: var(--evln-accent);
+	border-radius: var(--evln-r-full);
+}
+
+.evln-hero-visual__stack {
+	grid-column: 2;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	gap: 0.75rem;
+}
+
+.evln-hero-visual__chart {
+	background: var(--evln-elevated);
+	border-radius: var(--evln-r-lg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--evln-muted);
+}
+
+.evln-hero-visual__pair {
+	display: flex;
+	gap: 0.75rem;
+}
+
+.evln-hero-visual__accent,
+.evln-hero-visual__surface {
+	flex: 1;
+	border-radius: var(--evln-r-lg);
+}
+
+.evln-hero-visual__accent {
+	background: var(--evln-accent);
+}
+
+.evln-hero-visual__surface {
+	background: var(--evln-surface);
+	border: 1px solid var(--evln-border);
+}
+
+/* ---- Product mockup: a pure-CSS abstract dashboard illustration, used
+   instead of a real screenshot the demo can't ship (no product to
+   photograph, and no rights to stock imagery). A bracketed placeholder
+   like "[ Product screenshot ]" reads as a broken template; an abstract
+   but on-brand UI mockup reads as an intentional design choice. ---- */
+.evln-mockup-frame {
+	border: 1px solid var(--evln-border);
+	border-radius: var(--evln-r-lg);
+	overflow: hidden;
+	background: var(--evln-surface);
+	box-shadow: var(--evln-shadow-md);
+}
+
+.evln-mockup-topbar {
+	display: flex;
+	gap: 6px;
+	padding: 0.85rem 1rem;
+	background: var(--evln-elevated);
+	border-bottom: 1px solid var(--evln-border);
+}
+
+.evln-mockup-topbar span {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--evln-border-strong);
+}
+
+.evln-mockup-body {
+	display: flex;
+	min-height: 300px;
+}
+
+.evln-mockup-sidebar {
+	width: 76px;
+	flex-shrink: 0;
+	background: var(--evln-elevated);
+	padding: 1.25rem 0.85rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+	border-inline-end: 1px solid var(--evln-border);
+}
+
+.evln-mockup-sidebar-item {
+	height: 10px;
+	border-radius: var(--evln-r-xs);
+	background: var(--evln-border-strong);
+	opacity: 0.6;
+}
+
+.evln-mockup-sidebar-item.is-active {
+	background: var(--evln-primary);
+	opacity: 1;
+}
+
+.evln-mockup-main {
+	flex: 1;
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	min-width: 0;
+}
+
+.evln-mockup-statrow {
+	display: flex;
+	gap: 0.75rem;
+}
+
+.evln-mockup-stat {
+	flex: 1;
+	height: 56px;
+	border-radius: var(--evln-r-md);
+	background: var(--evln-elevated);
+	border: 1px solid var(--evln-border);
+}
+
+.evln-mockup-chart {
+	flex: 1;
+	display: flex;
+	align-items: flex-end;
+	gap: 0.6rem;
+	min-height: 120px;
+}
+
+.evln-mockup-chart--tall {
+	min-height: 200px;
+}
+
+/* ---- "In control" section: text stays at the theme's normal reading
+   width (inherited from the constrained parent), but the mockup card
+   below it needs the fuller container width to read as a real dashboard
+   preview rather than a cramped narrow box. ---- */
+.evln-in-control .evln-mockup-frame {
+	max-width: none;
+	width: 100%;
+}
+
+/* ---- Plain 4-cell stat strip ("98 / 42% / 9 / 180+") — a heading-less
+   bordered row, distinct from the boxed/carded stat presentation used
+   elsewhere. ---- */
+.evln-stat-strip-section {
+	padding-block: 0 !important;
+	border-block: 1px solid var(--evln-border);
+}
+
+.evln-stat-strip {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.evln-stat-strip__cell {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: var(--evln-sp-xl);
+	border-inline-end: 1px solid var(--evln-border);
+}
+
+.evln-stat-strip__cell:last-child {
+	border-inline-end: none;
+}
+
+.evln-stat-strip__value {
+	font-family: var(--evln-font-mono);
+	font-size: 2rem;
+	font-weight: 600;
+	color: var(--evln-primary);
+}
+
+.evln-stat-strip__label {
+	font-size: 0.875rem;
+	color: var(--evln-muted);
+}
+
+@media (max-width: 782px) {
+	.evln-stat-strip {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.evln-stat-strip__cell:nth-child(2n) {
+		border-inline-end: none;
+	}
+
+	.evln-stat-strip__cell:nth-child(n+3) {
+		border-top: 1px solid var(--evln-border);
+	}
+}
+
+/* Any stat cell that actually carries a labeled value (hero_mockup(),
+   dashboard_stats_mockup()) gets the auto-height/centered treatment,
+   regardless of which .evln-mockup-frame variant it's in — product_mockup()'s
+   plain empty boxes (no .evln-mockup-stat__value child) keep the fixed
+   56px placeholder look. Generalized from a --hero-only rule so
+   dashboard_stats_mockup() (used in a plain, non-hero frame) didn't have
+   to duplicate it. */
+.evln-mockup-stat:has(.evln-mockup-stat__value) {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.5rem;
+	height: auto;
+	padding: 0.85rem;
+}
+
+.evln-mockup-chart span {
+	flex: 1;
+	background: linear-gradient(to top, var(--evln-primary), var(--evln-accent));
+	border-radius: var(--evln-r-xs) var(--evln-r-xs) 0 0;
+	opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+	.evln-mockup-sidebar {
+		display: none;
+	}
+}
+
+/* ---- Hero stats mockup variant: a richer version for the two-column
+   hero (real-looking metrics + a floating review card) instead of the
+   plain sidebar dashboard above. All overrides are scoped under
+   .evln-mockup-frame--hero specifically so they don't change the plain
+   variant other sections (and the SaaS demo) still use. ---- */
+.evln-mockup-frame--hero {
+	position: relative;
+	margin-bottom: 2.25rem; /* room for the floating rating card below */
+}
+
+.evln-mockup-hero-bar {
+	height: 32px;
+	width: 40%;
+	border-radius: var(--evln-r-sm);
+	background: var(--evln-primary);
+	margin-bottom: 1.25rem;
+}
+
+.evln-mockup-stat__value {
+	font-family: var(--evln-font-mono);
+	font-weight: 700;
+	font-size: 1rem;
+	color: var(--evln-text);
+}
+
+.evln-mockup-stat__bar {
+	height: 4px;
+	border-radius: var(--evln-r-full);
+	background: var(--evln-border-strong);
+	overflow: hidden;
+}
+
+.evln-mockup-stat__bar span {
+	display: block;
+	height: 100%;
+	background: var(--evln-accent);
+}
+
+.evln-mockup-rating {
+	position: absolute;
+	bottom: -1.5rem;
+	inset-inline-start: 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: var(--evln-surface);
+	border: 1px solid var(--evln-border);
+	border-radius: var(--evln-r-md);
+	box-shadow: var(--evln-shadow-md);
+	padding: 0.65rem 1rem;
+	font-family: var(--evln-font-mono);
+	font-weight: 700;
+	font-size: 0.875rem;
+	color: var(--evln-text);
+}
+
+.evln-mockup-rating__stars {
+	color: var(--evln-accent);
+	font-size: 0.8125rem;
+	letter-spacing: 1px;
+}
+
+/* ---- Hero checkmarks row (e.g. "One-time license", "Lifetime updates"). ---- */
+.evln-checkmarks {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1.25rem;
+	font-size: 0.875rem;
+	color: var(--evln-muted);
+	margin-top: 1rem;
+}
+
+.evln-checkmarks__item {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.evln-checkmarks__item::before {
+	content: "✓";
+	color: var(--evln-success);
+	font-weight: 700;
+}
+
+/* ---- Two-column hero layout: text column + mockup column, replacing a
+   stacked/centered hero when the demo explicitly asks for it via the
+   evln-hero-section--split class. ---- */
+.evln-hero-section--split .wp-block-columns {
+	align-items: center;
+	gap: var(--evln-sp-2xl);
+}
+
+.evln-hero-section--split :where(h1, p):not(.evln-eyebrow) {
+	text-align: start;
+}
+
+.evln-hero-section--split .evln-eyebrow,
+.evln-hero-section--split .wp-block-buttons {
+	justify-content: flex-start;
+}
+
+@media (max-width: 782px) {
+	.evln-hero-section--split .wp-block-columns {
+		flex-direction: column;
+	}
+
+	.evln-hero-section--split :where(h1, p, .evln-eyebrow, .wp-block-buttons, .evln-checkmarks) {
+		text-align: center;
+		justify-content: center;
+	}
+}
+
+/* ---- Hero: the first full-width group on the front page gets extra
+   presence — bigger display type, a touch more breathing room — rather
+   than reading at the same visual weight as every section below it. ---- */
+.evln-hero-section h1.wp-block-heading {
+	font-family: var(--evln-font-display);
+	font-size: clamp(2.5rem, 2rem + 2.5vw, 3.75rem);
+	line-height: 1.08;
+	letter-spacing: -0.01em;
+	max-width: 18ch;
+	margin-inline: auto;
+}
+
+/*
+ * The two-column split hero (About/Contact/homepage/etc. via
+ * secondary_hero()/the homepage's own hero) needs its own sizing: the
+ * base rule's max-width:18ch + margin-inline:auto were written for the
+ * OLDER single-column centered hero and actively fight a left-aligned
+ * heading sitting in its own (already half-width) column — constraining
+ * it to a narrow centered block instead of using the column's real width.
+ * Also confirmed live against the reference implementation this design
+ * was matched against: its hero H1 computes to ~89.6px at a 1280px
+ * viewport, nearly 50% larger than this theme's previous 60px cap — a
+ * real, measurable gap, not a rounding difference.
+ */
+.evln-hero-section--split h1.wp-block-heading {
+	font-size: clamp(2.75rem, 2rem + 4.5vw, 5.6rem);
+	max-width: none;
+	margin-inline: 0;
+}
+
+.evln-hero-section {
+	position: relative;
+}
+
+.evln-hero-section::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(ellipse 60% 50% at 50% 0%, color-mix(in srgb, var(--evln-primary) 10%, transparent), transparent 70%);
+	pointer-events: none;
+}
+
+.evln-hero-section > * {
+	position: relative;
+}
+
+/* ---- Logo cloud: plain paragraph text in a columns block, made to read
+   as an intentional "trusted by" strip instead of an unstyled list of
+   words. ---- */
+.evln-logo-cloud h3.wp-block-heading {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--evln-muted);
+	font-family: var(--evln-font-body);
+	font-weight: 600;
+}
+
+.evln-logo-cloud .wp-block-columns {
+	border-top: 1px solid var(--evln-border);
+	border-bottom: 1px solid var(--evln-border);
+	padding-block: var(--evln-sp-lg);
+	margin-top: var(--evln-sp-lg);
+	/* Override core Gutenberg's default "stack to one column below 782px"
+	   behavior — a logo cloud reads as broken (one name per row, huge gaps)
+	   stacked; wrapping to a compact row is correct at every width. */
+	flex-wrap: wrap !important;
+	justify-content: center;
+	row-gap: var(--evln-sp-md);
+}
+
+/* Matches core's own selector shape (.wp-block-columns > .wp-block-column)
+   so specificity ties instead of losing to it — core's mobile stacking
+   rule is itself `!important`, so a lower-specificity override here would
+   never win regardless of source order. */
+.evln-logo-cloud .wp-block-columns .wp-block-column {
+	flex-basis: auto !important;
+	width: auto !important;
+	flex-grow: 0 !important;
+}
+
+.evln-logo-cloud .wp-block-column p {
+	color: var(--evln-muted);
+	opacity: 0.85;
+	font-size: 1.0625rem;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+}
+
+/* ---- Process steps ("Simple by design"/"How it works"): a distinct,
+   lighter treatment from the numbered feature grid below — confirmed
+   directly against the reference implementation's own markup: a top
+   border line + a small explicit step number, no card/shadow/hover. ---- */
+.evln-process .wp-block-columns {
+	gap: var(--evln-sp-xl);
+}
+
+.evln-process .wp-block-column {
+	border-top: 2px solid var(--evln-primary);
+	padding-top: var(--evln-sp-lg);
+}
+
+.evln-process__step {
+	display: block;
+	font-family: var(--evln-font-mono);
+	font-size: 0.8125rem;
+	color: var(--evln-accent);
+}
+
+.evln-process .wp-block-column h3 {
+	margin-top: var(--evln-sp-md);
+	font-size: 1.375rem;
+}
+
+.evln-process .wp-block-column p {
+	color: var(--evln-muted);
+	margin-top: var(--evln-sp-sm);
+}
+
+/* ---- Feature columns: a seamless hairline-bordered grid (1px gaps showing
+   the border color through, flat cards, no shadow) — matches the
+   reference's own markup (`grid gap-px border bg-border`, `bg-card`
+   articles), not the elevated/shadowed card treatment this used before. ---- */
+.evln-features .wp-block-columns {
+	gap: 1px;
+	background: var(--evln-border);
+	border: 1px solid var(--evln-border);
+}
+
+.evln-features .wp-block-column {
+	background: var(--evln-surface);
+	padding: var(--evln-sp-xl);
+	position: relative;
+	transition: transform 0.2s ease;
+}
+
+.evln-features .wp-block-column:hover {
+	transform: translateY(-2px);
+}
+
+.evln-feature-icon-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: var(--evln-sp-lg);
+}
+
+.evln-feature-icon {
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: var(--evln-r-md);
+	background: var(--evln-elevated);
+	color: var(--evln-primary);
+}
+
+.evln-feature-index {
+	font-family: var(--evln-font-mono);
+	font-size: 0.75rem;
+	color: var(--evln-muted);
+}
+
+.evln-features .wp-block-column h4 {
+	font-size: 1.25rem;
+}
+
+.evln-features .wp-block-column p {
+	color: var(--evln-muted);
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	margin-top: var(--evln-sp-sm);
+}
+
+/* ---- Integrations: same quiet-card treatment as features, smaller. ---- */
+.evln-integrations .wp-block-columns {
+	margin-bottom: var(--evln-sp-md);
+}
+
+.evln-integrations .wp-block-column p {
+	background: var(--evln-surface);
+	border: 1px solid var(--evln-border);
+	border-radius: var(--evln-r-md);
+	padding: 0.85rem;
+	text-align: center;
+	font-weight: 600;
+	font-size: 0.9375rem;
+	margin: 0;
+}
+
+/* ---- Pricing cards ---- */
+.evln-pricing-card {
+	position: relative;
+	box-shadow: var(--evln-shadow-sm);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.evln-pricing-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--evln-shadow-md);
+}
+
+.evln-pricing-card h4.wp-block-heading {
+	font-size: 1.0625rem;
+	color: var(--evln-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-family: var(--evln-font-body);
+	font-weight: 700;
+}
+
+/* The generic .has-primary-background-color text-contrast rule below uses
+   :where() (zero specificity) specifically so it never has to fight
+   deliberate overrides like the rule above — but that means it also loses
+   to it by default, which would leave the featured pricing card's muted-grey
+   category label at low contrast against the dark primary background. */
+.has-primary-background-color.evln-pricing-card h4.wp-block-heading {
+	color: color-mix(in srgb, var(--evln-surface) 70%, transparent);
+}
+
+/*
+ * Targets the price specifically (not the generic .wp-block-paragraph
+ * class every paragraph block gets) — a card can also carry a plain
+ * description paragraph now, which must not inherit this large price
+ * styling.
+ */
+.evln-pricing-card__price {
+	font-family: var(--evln-font-mono);
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin-block: 0.25rem 1rem;
+}
+
+/* Confirmed against the reference: the period ("/yr") is its own smaller
+   inline span, not the same size as the price figure. */
+.evln-pricing-card__period {
+	font-family: var(--evln-font-body);
+	font-size: 0.875rem;
+	font-weight: 400;
+	margin-inline-start: 0.15rem;
+}
+
+.evln-pricing-card > .wp-block-paragraph:not(.evln-pricing-card__price) {
+	color: var(--evln-muted);
+	font-size: 0.9375rem;
+	margin-block: 0.25rem 0;
+}
+
+.has-primary-background-color.evln-pricing-card > .wp-block-paragraph:not(.evln-pricing-card__price) {
+	color: color-mix(in srgb, var(--evln-surface) 80%, transparent);
+}
+
+/* Absolutely positioned in the card's top-end corner — confirmed against
+   the reference's own markup (`absolute end-5 top-5`), not inline above
+   the heading as an earlier version of this rule placed it. */
+.evln-pricing-card__badge {
+	position: absolute;
+	top: 1.25rem;
+	inset-inline-end: 1.25rem;
+	background: var(--evln-accent);
+	color: var(--evln-surface);
+	font-size: 0.6875rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	padding: 0.25rem 0.65rem;
+	border-radius: var(--evln-r-full);
+}
+
+.evln-pricing-card .wp-block-buttons {
+	margin-top: auto;
+	padding-top: 1.25rem;
+}
+
+.evln-pricing-card .wp-block-button__link {
+	width: 100%;
+	justify-content: center;
+}
+
+.evln-pricing-card ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	flex: 1;
+}
+
+.evln-pricing-card ul li {
+	font-size: 0.9375rem;
+	padding-inline-start: 1.5rem;
+	position: relative;
+}
+
+.evln-pricing-card ul li::before {
+	content: "✓";
+	position: absolute;
+	inset-inline-start: 0;
+	color: var(--evln-accent);
+	font-weight: 700;
+}
+
+.has-primary-background-color.evln-pricing-card ul li::before {
+	color: var(--evln-accent);
+}
+
+/* ---- Quotes: real quote-card treatment instead of a bare <blockquote>,
+   anywhere in content (testimonials on the homepage, a pull-quote in a
+   blog post, etc.) — not scoped to the homepage, since this is simply a
+   better default for the block itself. ---- */
+.wp-block-quote {
+	background: var(--evln-surface);
+	border: 1px solid var(--evln-border);
+	border-inline-start: 3px solid var(--evln-primary);
+	border-radius: var(--evln-r-lg);
+	padding: var(--evln-sp-lg);
+	margin: 0;
+}
+
+.wp-block-quote p {
+	font-size: 1.0625rem;
+	line-height: 1.6;
+	color: var(--evln-text);
+}
+
+.wp-block-quote cite {
+	display: block;
+	margin-top: var(--evln-sp-md);
+	font-style: normal;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--evln-muted);
+}
+
+/* ---- FAQ / disclosure accordion (core/details) — universal, not scoped
+   to the homepage, for the same reason as quotes above. ---- */
+.wp-block-details {
+	border-bottom: 1px solid var(--evln-border);
+	padding-block: var(--evln-sp-md);
+}
+
+.wp-block-details summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 1.0625rem;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.wp-block-details summary::-webkit-details-marker {
+	display: none;
+}
+
+.wp-block-details summary::after {
+	content: "+";
+	font-size: 1.5rem;
+	line-height: 1;
+	color: var(--evln-muted);
+	flex-shrink: 0;
+	transition: transform 0.2s ease;
+}
+
+.wp-block-details[open] summary::after {
+	transform: rotate(45deg);
+}
+
+.wp-block-details p {
+	color: var(--evln-muted);
+	margin-top: var(--evln-sp-sm);
+}
+
+/* ---- Generic section rhythm: alternate backgrounds already come from
+   the demo's own backgroundColor attributes; this just makes sure text on
+   the "elevated"/"primary" backgrounds keeps contrast without every block
+   needing its own explicit color override. ---- */
+.has-primary-background-color :where(h1, h2, h3, h4, p, li):not([class*="has-"][class*="color"]) {
+	color: var(--evln-surface);
+}
+
+.has-primary-background-color .wp-block-button__link.is-style-outline {
+	border-color: var(--evln-surface);
+	color: var(--evln-surface);
+}
+
+@media (max-width: 782px) {
+	.evln-pricing-card {
+		margin-bottom: var(--evln-sp-lg);
+	}
+}

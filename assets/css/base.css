@@ -1,0 +1,359 @@
+/*
+ * Evolyon base stylesheet — reset, typography, and the accessibility
+ * contract (skip link, focus-visible, reduced motion). Every value below
+ * reads from a --evln-* custom property; none are hardcoded, so a palette
+ * or spacing-scale change never requires touching this file.
+ */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--evln-bg);
+	color: var(--evln-text);
+	font-family: var(--evln-font-body);
+	font-size: 16px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	color: var(--evln-primary);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--evln-font-display);
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
+	text-wrap: balance;
+	margin: 0 0 var(--evln-sp-md);
+	color: var(--evln-text);
+}
+
+p {
+	margin: 0 0 var(--evln-sp-md);
+}
+
+::selection {
+	background: var(--evln-primary);
+	color: var(--evln-surface);
+}
+
+.evln-container {
+	max-width: 1320px;
+	margin-inline: auto;
+	padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.evln-main {
+	padding-block: var(--evln-sp-3xl);
+}
+
+/* The front page and Elementor-built pages supply their own section
+   spacing (each full-width section already pads itself) — the generic
+   main-content padding would just double it up top and bottom. */
+.evln-main--front,
+.evln-main--elementor {
+	padding-block: 0;
+}
+
+/*
+ * Demo/Elementor-built pages compose sections from full-bleed
+ * (align:full) groups whose CONTENT is meant to read as one consistent
+ * column across the whole page — but theme.json's default constrained
+ * width (720px, tuned for narrow blog prose) is much narrower than the
+ * hero's own wide (1180px) content, so the hero's text started ~230px
+ * further left than every other section's eyebrow/heading, breaking the
+ * shared left edge every section is supposed to share (confirmed live,
+ * flagged directly by the user). Rather than opting individual sections
+ * into `align:wide` one at a time (what the hero alone was doing), scope
+ * WordPress's own `--wp--style--global--content-size` custom property —
+ * what `.is-layout-constrained`'s built-in centering already reads — to
+ * match the wide size for this whole page type, so every section's
+ * constrained content resolves to the same width and the same left edge
+ * without needing per-section alignment overrides.
+ */
+.evln-main--elementor {
+	--wp--style--global--content-size: var(--wp--style--global--wide-size);
+}
+
+/*
+ * The constrained-content max-width above is centered with plain
+ * `margin-inline: auto` and no padding floor of its own — so its actual
+ * left/right inset is just whatever's left over between the 1180px
+ * content and the viewport (42px at a 1280px viewport, but shrinking to
+ * near 0 well before the viewport gets down to 1180px, and never a
+ * guaranteed minimum at any width). Adding an explicit padding-inline
+ * here guarantees real breathing room against the section's own edge at
+ * every viewport, on top of whatever the centering gap happens to be —
+ * requested directly by the user ("add some padding and margin left and
+ * right"), matching the same clamp already used by `.evln-container`.
+ */
+.evln-main--elementor .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+	padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+/*
+ * WordPress core's block-library CSS gives every `wp:columns` block a
+ * default `margin-bottom: 1.75em` (:where(.wp-block-columns), zero
+ * specificity, meant for normal free-flowing content). This design system
+ * controls its own vertical rhythm explicitly instead — spacer blocks
+ * between elements, padding on the section() wrapper itself — so that
+ * default just adds an unwanted trailing gap wherever a columns block
+ * happens to be the last thing in a section. Most visible on the closing
+ * CTA (its 70/30 copy+button row is the section's last block): a 28px
+ * off-white band appeared between the CTA's teal background and whatever
+ * followed it (confirmed live, reported via screenshot — the section and
+ * next element both had zero margin/padding, so the "extra" 28px was
+ * genuinely unaccounted for until traced to this core default surviving
+ * because :where() never had the specificity to be worth overriding
+ * before). Reset globally since no layout here relies on the core default.
+ */
+.wp-block-columns {
+	margin-bottom: 0;
+}
+
+/* Skip link: off-screen until focused, per accessibility philosophy. */
+.evln-skip-link {
+	position: absolute;
+	inset-inline-start: var(--evln-sp-md);
+	top: -999px;
+	background: var(--evln-primary);
+	color: var(--evln-surface);
+	padding: 0.6rem 1rem;
+	border-radius: var(--evln-r-md);
+	z-index: 1000;
+	text-decoration: none;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.evln-skip-link:focus {
+	top: var(--evln-sp-md);
+}
+
+:focus-visible {
+	outline: 2px solid var(--evln-primary);
+	outline-offset: 2px;
+}
+
+/* Standard WordPress screen-reader-text pattern, token-driven. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background: var(--evln-surface);
+	color: var(--evln-text);
+	clip: auto !important;
+	clip-path: none;
+	display: block;
+	height: auto;
+	padding: 1rem 1.4rem;
+	position: fixed;
+	inset-inline-start: 1rem;
+	top: 1rem;
+	width: auto;
+	z-index: 100000;
+	border-radius: var(--evln-r-md);
+	box-shadow: var(--evln-shadow-md);
+}
+
+/* Buttons — shared component used by the CTA element and elsewhere. */
+.evln-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	border-radius: var(--evln-r-md);
+	padding: 0.6rem 1.15rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	font-family: var(--evln-font-body);
+	border: 1px solid transparent;
+	cursor: pointer;
+	text-decoration: none;
+	line-height: 1.3;
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.evln-btn:active {
+	transform: scale(0.97);
+}
+
+.evln-btn--primary,
+.evln-btn--accent,
+.wp-block-button__link {
+	box-shadow: var(--evln-shadow-sm);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.evln-btn--primary:hover,
+	.evln-btn--accent:hover,
+	.wp-block-button__link:hover {
+		transform: translateY(-2px);
+	}
+
+	.evln-btn--primary:active,
+	.evln-btn--accent:active,
+	.wp-block-button__link:active {
+		transform: translateY(0);
+	}
+}
+
+.evln-btn--primary {
+	background: var(--evln-primary);
+	color: var(--evln-surface);
+}
+
+.evln-btn--primary:hover {
+	background: var(--evln-primary-strong);
+}
+
+.evln-btn--accent {
+	background: var(--evln-accent);
+	/* Not #fff: --evln-accent is a warm mid-tone in light mode but a
+	   brighter tone in dark mode, so the correct-contrast text color
+	   flips too — var(--evln-surface) does that automatically, a literal
+	   white would not. */
+	color: var(--evln-surface);
+}
+
+.evln-btn--accent:hover {
+	background: var(--evln-accent-strong);
+}
+
+.evln-btn--outline {
+	background: transparent;
+	border-color: var(--evln-border-strong);
+	color: var(--evln-text);
+}
+
+.evln-btn--outline:hover {
+	border-color: var(--evln-primary);
+	color: var(--evln-primary);
+}
+
+/* Icon buttons — search/account/cart/wishlist toggles. */
+.evln-icon-btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: var(--evln-r-md);
+	color: var(--evln-text);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.evln-icon-btn:hover {
+	background: var(--evln-accent);
+	color: var(--evln-surface);
+}
+
+/* ---- Eyebrow: small uppercase label line above a heading. Lives here
+   (loaded on every page), not content-blocks.css (singular pages only) —
+   it's also used on the blog archive header, which content-blocks.css
+   never reaches. Deliberately targets --evln-primary directly instead of
+   Gutenberg's has-primary-color (--wp--preset--color--primary, a static
+   hex that never re-evaluates for dark mode) — see the docblock on
+   Evolyon_Toolkit_Demo_Base::eyebrow(). ---- */
+.evln-eyebrow {
+	display: block;
+	color: var(--evln-primary);
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.evln-badge-count {
+	position: absolute;
+	top: 2px;
+	inset-inline-end: 2px;
+	min-width: 16px;
+	height: 16px;
+	padding: 0 3px;
+	border-radius: var(--evln-r-full);
+	background: var(--evln-accent);
+	color: var(--evln-surface);
+	font-size: 0.625rem;
+	font-weight: 700;
+	line-height: 16px;
+	text-align: center;
+	font-family: var(--evln-font-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/*
+ * Site-wide animation control (Customizer → Performance), independent of
+ * the visitor's own OS-level reduced-motion preference above, which always
+ * applies regardless of this setting.
+ */
+body.evln-animations-off *,
+body.evln-animations-off *::before,
+body.evln-animations-off *::after {
+	animation-duration: 0.001ms !important;
+	transition-duration: 0.001ms !important;
+	scroll-behavior: auto !important;
+}
+
+body.evln-animations-reduced *,
+body.evln-animations-reduced *::before,
+body.evln-animations-reduced *::after {
+	animation-duration: 120ms !important;
+	transition-duration: 120ms !important;
+}
+
+/* Enhanced focus outlines (Customizer → Accessibility). */
+body.evln-a11y-enhanced-focus :focus-visible {
+	outline: 3px solid var(--evln-accent);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
